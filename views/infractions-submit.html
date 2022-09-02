@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title></title>
+  </head>
+  <body>
+    <p>Enter SRC Username and SRC Run Link information to add a new infraction:</p>
+    <input id="username" placeholder="SRC Username" type="text">
+    <input id="link" placeholder="SRC Run Link" type="url">
+    <select id="type">
+      <option value="sar">SAR Version</option>
+      <option value="vscript">Vscript</option>
+    </select>
+    <button id="submit-new" type="submit" formmethod="post">Submit</button>
+    <p>Want to check an infraction instead? <a href="/infractions">Click here</a></p>
+    {{if .status}}
+    <p>Successfully added a {{.type}} infraction with user {{.username}} - Link: {{.link}}</p>
+    {{end}}
+    <script>
+      document.getElementById("submit-new").addEventListener("click", () => {
+      window.location.href = "/infractions/add/?user=" + document.getElementById("username").value + "&link=" + document.getElementById("link").value + "&type=" + document.getElementById("type").value
+      })
+    </script>
+  </body>
+</html>

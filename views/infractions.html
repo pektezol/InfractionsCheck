@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title></title>
+  </head>
+  <body>
+    <p>Enter SRC Username to check for infractions: <input id="username" placeholder="SRC Username" type="text">
+    <button id="submit-username" type="submit" formmethod="get">Submit</button></p>
+    <p>Want to add an infraction instead? <a href="/infractions/add">Click here</a></p>
+    {{if .username}}
+    <p>{{.infractionCountSAR}} SAR version infractions found for user {{.username}}</p>
+    <p>{{.infractionCountVscript}} Vscript infractions found for user {{.username}}</p>
+    {{end}}
+    {{if .stateSAR}}
+    <table style="width: 100%" border="1">
+      <tbody>
+        <tr>
+          <th>SRC Username<br>
+          </th>
+          <th>SAR Infraction Run Link<br>
+          </th>
+        </tr>
+        {{range .userSAR}}
+        <tr>
+          <td>{{.Username}}<br>
+          </td>
+          <td>{{.Link}}<br>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+    {{end}}
+    {{if .stateVscript}}
+    <table style="width: 100%" border="1">
+        <tbody>
+          <tr>
+            <th>SRC Username<br>
+            </th>
+            <th>Vscript Infraction Run Link<br>
+            </th>
+          </tr>
+          {{range .userVscript}}
+          <tr>
+            <td>{{.Username}}<br>
+            </td>
+            <td>{{.Link}}<br>
+            </td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+    {{end}}
+    <p><br>
+    </p>
+    <script>
+      document.getElementById("submit-username").addEventListener("click", () => {
+      window.location.href = "/infractions/?user=" + document.getElementById("username").value
+      })
+    </script>
+  </body>
+</html>

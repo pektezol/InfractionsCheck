@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS "sar";
+DROP TABLE IF EXISTS "vscript";
+CREATE TABLE "sar" (
+  id SERIAL NOT NULL PRIMARY KEY,
+  username TEXT NOT NULL,
+  link TEXT NOT NULL
+);
+
+CREATE TABLE "vscript" (
+  id SERIAL NOT NULL PRIMARY KEY,
+  username TEXT NOT NULL,
+  link TEXT NOT NULL
+);
